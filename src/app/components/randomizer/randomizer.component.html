@@ -1,1 +1,15 @@
-<p>randomizer works!</p>
+<form (submit)="randomize($event)" id="form">
+    <label for="number">how big should the group be?</label>
+    <input type="text" id="number" name="number" placeholder="2" required>
+    <button type="submit">Confirm</button>
+</form>
+
+<div>
+    @for (student of students; track $index) {
+        <div>
+            <div>
+                <img src="{{student.imageurl}}" alt="">
+            </div>
+        </div>
+    }
+</div>

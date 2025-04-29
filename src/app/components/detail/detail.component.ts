@@ -12,8 +12,9 @@ import { Student } from '../../models/student';
 export class DetailComponent {
   route = inject(ActivatedRoute);
   service = inject(StudentService);
-  student?:Student;
-  
+  student?: Student;
+  dob?: string | undefined;
+
   constructor() {
     const id = this.route.snapshot.paramMap.get("id");
     console.log(id)
@@ -23,5 +24,22 @@ export class DetailComponent {
         error: err => console.log(err),
       });
     }
+  }
+
+  formatDateToReadableString(isoString: string | undefined): string {
+    if (isoString) {
+      const date = new Date(isoString);
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+    return "error";
+  }
+
+  modifyDate() {
+    this.dob = this.formatDateToReadableString(this.student?.dob);
+    return this.dob;
   }
 }

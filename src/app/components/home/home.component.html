@@ -1,15 +1,21 @@
-<div class="container">
-    @for (student of studentArray; track $index) {
-    <div class="image-container">
-        <img class="img" src="{{student.imageurl}}" alt="">
+
+    <div class="sortings">
+        <button (click)="orderByAge()">Age Order</button>
+        <button (click)="orderByName()">Alphabetical Order</button>
     </div>
-    <div class="info">
-        
-        <a routerLink="/detail/{{student.id}}">
-            <span class="name">{{student.name}}</span>
-            <span class="surname">{{student.surname}}</span>
-        </a>
-       
+
+
+    <div class="container">
+        @for (student of studentArray; track $index) {
+        <div class="image-container">
+            <img class="img" src="{{student.imageurl}}" alt="">
+        </div>
+        <div class="info">
+            
+            <a routerLink="/detail/{{student.id}}">
+                <span class="name">{{student.name}} {{student.surname}}</span>
+            </a>
+           
+        </div>
+        }
     </div>
-    }
-</div>

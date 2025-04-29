@@ -1,9 +1,10 @@
+
 .container{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
+    display: grid;  
+    column-gap: 14px;  
+    row-gap: 14px;  
+    grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
+    margin: 20px;
 }
 
 .image-container{
@@ -19,9 +20,28 @@
 .info{
     display: flex;
     gap: 12px;
-    align-items: baseline;
+    align-items: center;
 }
 
 .name, .surname{
     font-size: 1.3rem;
+}
+
+.sortings{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    gap: 4%;
+    box-sizing: border-box;
+    margin:20px;
+}
+
+button{
+    border: none;
+    background-color: rgba(0, 0, 0, 0.126);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 200;
+    width: 200px;
 }
