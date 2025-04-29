@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container{
+    width: 180px;
+    height: 180px;
+}
+
+.img{
+    height: 100%;
+    border-radius: 50%;
+}
+
+.info{
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+}
+
+.name, .surname{
+    font-size: 1.3rem;
+}

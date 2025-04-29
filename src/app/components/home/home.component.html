@@ -1,0 +1,15 @@
+<div class="container">
+    @for (student of studentArray; track $index) {
+    <div class="image-container">
+        <img class="img" src="{{student.imageurl}}" alt="">
+    </div>
+    <div class="info">
+        
+        <a routerLink="/detail/{{student.id}}">
+            <span class="name">{{student.name}}</span>
+            <span class="surname">{{student.surname}}</span>
+        </a>
+       
+    </div>
+    }
+</div>
