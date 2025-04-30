@@ -16,10 +16,6 @@ export class HomeComponent {
   studentArray: Student[] = [];
 
   constructor() {
-    this.service.getStudents().subscribe({
-      next: (data) => this.studentArray = data,
-      error: (err) => console.log(err),
-    })
   }
 
   orderByName() {
@@ -38,6 +34,17 @@ export class HomeComponent {
       const date2 = new Date(b.dob).getTime()
 
       return date1 - date2
+    })
+  }
+
+  ngOnInit() {
+    console.log("siamo dentro");
+    
+    this.service.getStudents().subscribe({
+      next: (data) => {this.studentArray = data
+        console.log(data);
+      },
+      error: (err) => console.log(err),
     })
   }
 }
