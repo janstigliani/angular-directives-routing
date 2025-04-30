@@ -3,8 +3,8 @@ export interface Student {
         name: string
         surname: string
         dob: string
-        gender: string
-        imageurl: string
+        gender?: string
+        imageurl?: string
         marks: number[]
-        id: string
+        id?: string
 }

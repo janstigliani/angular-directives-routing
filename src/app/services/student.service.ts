@@ -11,40 +11,40 @@ export class StudentService {
   readonly BASE_URL = "https://68109d7827f2fdac2412128f.mockapi.io/";
   readonly STUDENTS_ENDPOINT = "students/"
 
-  constructor(private http:HttpClient) {
-   }
+  constructor(private http: HttpClient) {
+  }
 
-  getStudents():Observable<Student[]> {
+  getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.BASE_URL + this.STUDENTS_ENDPOINT);
   }
 
-  getStudent(id: string):Observable<Student> {
+  getStudent(id: string): Observable<Student> {
     return this.http.get<Student>(this.BASE_URL + this.STUDENTS_ENDPOINT + id);
   }
 
-  deleteStudent(student: Student, router:any) {
+  deleteStudent(student: Student, router: any) {
     const url = this.BASE_URL + this.STUDENTS_ENDPOINT + student.id
     fetch(url, {
       method: 'DELETE',
     }).then(res => {
-          return res.json();
+      return res.json();
     }).then(task => {
       console.log("utente eliminato", task)
       router.navigate(['/'])
     }).catch(error => {
-     console.log(error);
+      console.log(error);
     })
   }
 
-  addMarks(marksArray:number[], student:Student) {
+  addMarks(marksArray: number[], student: Student) {
     const url = this.BASE_URL + this.STUDENTS_ENDPOINT + student.id;
-    
+
     return fetch(url, {
       method: 'PUT',
-      headers: {'content-type':'application/json'},
-      body: JSON.stringify({marks: marksArray})
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ marks: marksArray })
     }).then(res => {
-          return res.json();
+      return res.json();
     }).catch(error => {
       console.log("error")
     })
@@ -52,13 +52,10 @@ export class StudentService {
 
   // addMarks1(marksArray:number[], student:Student){
   //   const url = this.BASE_URL + this.STUDENTS_ENDPOINT + student.id;
-  //   const roba = this.http.put<Student>(url, {
+  //   return this.http.put<Student>(url, {
   //     headers: {'content-type':'application/json'},
   //     body: JSON.stringify({marks: marksArray}),
-  //     responseType: "json",
   //   })
-  //   console.log(roba)
-  //   return roba
   // }
 
   addMarks1(marksArray: number[], student: Student): Observable<Student> {
@@ -68,5 +65,33 @@ export class StudentService {
     return this.http.put<Student>(url, body, {
       headers: { 'Content-Type': 'application/json' }
     });
-}
+  }
+
+  addStudent() {
+
+    console.log("succede qualcosa")
+    const fakeStudent = {
+      country: "pippolinia",
+      name: "pippo",
+      surname: "pippopolis",
+      dob: "1999",
+      gender: "pipposessuale",
+      marks: [],
+    }
+
+    const url = this.BASE_URL + this.STUDENTS_ENDPOINT;
+
+    fetch(url, {
+      method: 'POST',
+      headers: {'content-type':'application/json'},
+      body: JSON.stringify(fakeStudent)
+    }).then(res => {
+          return res.json();
+    }).then(task => {
+      console.log(task)
+    }).catch(error => {
+      console.log(error);
+    })
+
+  }
 }
