@@ -1,1 +1,25 @@
-<button (click)="service.addStudent()">add</button>
+<form [formGroup]="addStudentForm" (submit)="addStudent()">
+    <label for="nome">Name</label>
+    <input type="text" formControlName="name" id="name">
+
+    <label for="surname">Surname</label>
+    <input type="text" formControlName="surname" id="surname">
+
+    <label for="dob">Date of Birth</label>
+    <input type="date" formControlName="dob" id="dob">
+
+    <label for="gender">Gender</label>
+    <input type="text" formControlName="gender" id="gender">
+
+    <label for="country">Birth Country</label>
+    <select id="country" name="cars" formControlName="country" id="country">
+        @for (country of countryList; track $index) {
+            <option value="{{country}}">{{country}}</option>
+        }
+    </select>
+
+    <label for="imageUrl">Image Url</label>
+    <input type="text" formControlName="imageUrl" id="imageUrl">
+
+    <button type-="submit">add</button>
+</form>

@@ -67,31 +67,32 @@ export class StudentService {
     });
   }
 
-  addStudent() {
+  addStudent(student:Student) {
 
-    console.log("succede qualcosa")
-    const fakeStudent = {
-      country: "pippolinia",
-      name: "pippo",
-      surname: "pippopolis",
-      dob: "1999",
-      gender: "pipposessuale",
-      marks: [],
-    }
+    // console.log("succede qualcosa")
+    // const fakeStudent = {
+    //   country: "pippolinia",
+    //   name: "pippo",
+    //   surname: "pippopolis",
+    //   dob: "1999",
+    //   gender: "pipposessuale",
+    //   marks: [],
+    // }
 
     const url = this.BASE_URL + this.STUDENTS_ENDPOINT;
 
     fetch(url, {
       method: 'POST',
       headers: {'content-type':'application/json'},
-      body: JSON.stringify(fakeStudent)
+      body: JSON.stringify(student)
     }).then(res => {
           return res.json();
     }).then(task => {
-      console.log(task)
+      console.log(task);
     }).catch(error => {
       console.log(error);
     })
-
   }
+
+  
 }
