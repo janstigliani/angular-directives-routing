@@ -46,7 +46,7 @@ export class StudentService {
     }).then(res => {
       return res.json();
     }).catch(error => {
-      console.log("error")
+      console.log("error", error)
     })
   }
 

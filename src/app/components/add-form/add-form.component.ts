@@ -28,8 +28,8 @@ export class AddFormComponent {
     console.log(this.addStudentForm)
     if (this.addStudentForm.valid) {
       const data = this.addStudentForm.value
-      const date = data.dob!.toISOString()
       console.log(data);
+      const date = String(data.dob!);
       console.log(date);
       const student:Student= {
         name: data.name!,
