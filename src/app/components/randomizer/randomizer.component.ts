@@ -16,47 +16,60 @@ export class RandomizerComponent {
   groupDimension = 0;
   RandomizedArray?: Student[][];
 
-  randomize(event: Event) {
-    this.groupDimension = this.getFormData(event)
-    if (this.groupDimension !== -1) {
-      this.service.getStudents().subscribe({
-        next: (data) => this.students = data,
-        error: (err) => console.log(err),
-      })
-
-      const studentsArray = this.students;
-      const finalArray = [];
-
-      for (let i = 0; i < Math.ceil(this.students.length / this.groupDimension); i++) {
-        const array: Student[] = []
-        finalArray.push(array);
-        console.log("final Array",finalArray)
-      }
-
-      for (let i = 0; i < this.students.length; i++) {
-        const studentIndex = Math.floor(Math.random() * studentsArray.length)
-        console.log("student index",studentIndex)
-        const student = studentsArray[studentIndex];
-        console.log("student",student)
-        while (true) {
-          const arrayIndex = Math.ceil(Math.random() * (this.students.length / this.groupDimension))
-          console.log("array index",arrayIndex)
-          if (finalArray[arrayIndex].length < this.groupDimension) {
-            finalArray[arrayIndex].push(student);
-            break;
-
-            //aggiungere uno splice per togliere gli studenti
-            //problema con il math.floor
-            
-          }
-        }
-      }
-      this.RandomizedArray = finalArray;
-    }
+  constructor() {
+    this.service.getStudents().subscribe({
+      next: (data) => this.students = data,
+      error: (err) => console.log(err),
+    })
   }
 
-  getFormData(event: Event): number {
+  randomize(event: Event) {
+
     event.preventDefault();
+
+    this.groupDimension = this.getFormData();
+
+    if (this.students.length === 0) return;
+    if (this.groupDimension === -1) return;
+
+    const studentsArray = [...this.students];
+    const finalArray = [];
+
+    const groupNumber = Math.ceil(this.students.length / this.groupDimension);
+
+    for (let i = 0; i < groupNumber; i++) {
+
+      const array: Student[] = []
+      finalArray.push(array);
+      console.log("final Array", finalArray)
+
+    }
+
+    for (let i = 0; i < this.students.length; i++) {
+
+      const studentIndex = Math.floor(Math.random() * studentsArray.length)
+    
+      const student = studentsArray[studentIndex];
+  
+      while (true) {
+
+        const arrayIndex = Math.floor(Math.random() * groupNumber)
+
+        if (finalArray[arrayIndex].length < this.groupDimension) {
+
+          finalArray[arrayIndex].push(student);
+          studentsArray.splice(studentIndex, 1);
+          console.log(studentsArray);
+
+          break;
+
+        }
+      }
+    }
+    this.RandomizedArray = finalArray;
+  }
+
+  getFormData(): number {
     const form = document.getElementById("form") as HTMLFormElement;
     const data = new FormData(form);
     const number = data.get("number") as unknown as number

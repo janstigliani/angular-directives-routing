@@ -13,9 +13,13 @@ export class LoginComponent {
   authServ = inject(AuthService);
   router = inject(Router);
 
-  fakeLogin() {
-    this.authServ.isAuth = true;
-    this.router.navigate(['/home']);
+  // fakeLogin() {
+  //   this.authServ.isAuth = true;
+  //   this.router.navigate(['/home']);
+  // }
+
+  login() {
+    
   }
 
 }
