@@ -27,7 +27,7 @@ export class RandomizerComponent {
       const studentsArray = this.students;
       const finalArray = [];
 
-      for (let i = 0; i < Math.round(this.students.length / this.groupDimension); i++) {
+      for (let i = 0; i < Math.ceil(this.students.length / this.groupDimension); i++) {
         const array: Student[] = []
         finalArray.push(array);
         console.log("final Array",finalArray)
@@ -39,11 +39,15 @@ export class RandomizerComponent {
         const student = studentsArray[studentIndex];
         console.log("student",student)
         while (true) {
-          const arrayIndex = Math.round(Math.random() * (this.students.length / this.groupDimension))
+          const arrayIndex = Math.ceil(Math.random() * (this.students.length / this.groupDimension))
           console.log("array index",arrayIndex)
           if (finalArray[arrayIndex].length < this.groupDimension) {
             finalArray[arrayIndex].push(student);
             break;
+
+            //aggiungere uno splice per togliere gli studenti
+            //problema con il math.floor
+            
           }
         }
       }
