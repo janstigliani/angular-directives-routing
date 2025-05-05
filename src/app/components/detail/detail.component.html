@@ -9,12 +9,17 @@
         <p>Gender: {{student.gender}}</p>
         <p>Birth Country: {{student.country}}</p>
         <p>marks: {{student.marks}}</p>
-        <form (submit)="getMarks($event)" id="form">
-            <label for="mark">add mark: </label>
-            <input type="number" name="mark" id="mark" min="0" max="10" required>
-            <button type="submit" [disabled]="">submit</button>
-        </form>
-        <button (click)="showDialogue()">Delete</button>
+
+        @if (authServ.isAuth) {
+            <form (submit)="getMarks($event)" id="form">
+                <label for="mark">add mark: </label>
+                <input type="number" name="mark" id="mark" min="0" max="10" required>
+                <button type="submit" [disabled]="">submit</button>
+            </form>
+            <button (click)="showDialogue()">Delete</button>
+        }
+       
+        
         <dialog id="dialog">
             <p>are you sure?</p>
             <button (click)="service.deleteStudent(student, router)">yes</button>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StudentService } from '../../services/student.service';
 import { Student } from '../../models/student';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/authentication/auth.service';
 
 @Component({
   selector: 'app-detail',
@@ -17,6 +18,7 @@ export class DetailComponent {
   student?: Student;
   dob?: string | undefined;
   router = inject(Router);
+  authServ = inject(AuthService)
 
   constructor() {
     const id = this.route.snapshot.paramMap.get("id");

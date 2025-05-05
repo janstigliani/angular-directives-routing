@@ -4,6 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { RandomizerComponent } from './components/randomizer/randomizer.component';
+import { authGuard } from './guards/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +21,7 @@ export const routes: Routes = [
     {
         path:"addForm",
         component: AddFormComponent,
+        canActivate: [authGuard],
     },
 
     {
@@ -26,10 +29,13 @@ export const routes: Routes = [
         component: RandomizerComponent,
     },
     {
+        path:"login",
+        component: LoginComponent,
+    },
+    {
         path:"",
         redirectTo: "/home", pathMatch: "full",
     },
-
     {
         path: "**",
         loadComponent: () => import("./components/not-found/not-found.component")
