@@ -1,5 +1,12 @@
-<form action="">
-    
+
+<form [formGroup]="loginForm" (submit)="login()">
+    <label for="">Email</label>
+    <input type="text" formControlName="email">
+
+    <label for="">Password</label>
+    <input type="text" formControlName="password">
+
+    <button type="submit">Login</button>
 </form>
 
-<button (click)="login()">Login</button>
+<p>You're not registered? <a routerLink="/register">Click Here</a></p>

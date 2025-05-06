@@ -20,9 +20,9 @@ export class AuthService {
       })
   }
 
-  registerUser(router: Router) {
+  registerUser(router: Router, data: any) {
     const url = new URL(this.BASE_URL + 'users')
-    const newUser = {}
+    const newUser = {email: data.email, password: data.password1}
 
     fetch(url, {
       method: 'POST',
@@ -32,7 +32,7 @@ export class AuthService {
       return res.json();
     }).then(user => {
       console.log(user);
-      router.navigate(['/'])
+      router.navigate(['/home'])
     }).catch(error => {
       console.log(error);
     })

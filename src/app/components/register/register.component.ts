@@ -40,6 +40,8 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.authServ.registerUser(this.router);
+    const data = this.registerForm.value;
+    this.authServ.registerUser(this.router, data);
+    this.authServ.isAuth = true;
   }
 }
